@@ -19,7 +19,7 @@ namespace KFZApp.ViewModels
             AlleKFZs.Add(new KFZ() { Kennzeichen = "S-RT 584", Typ="SUV" });
             AlleKFZs.Add(new KFZ() { Kennzeichen = "RT-XD 5213", Typ="Cabrio" });
             AlleKFZs.Add(new KFZ() { Kennzeichen = "B-BD 4302", Typ="Crossover" });
-
+            //test
            
         }
 
