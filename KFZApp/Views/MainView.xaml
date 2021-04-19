@@ -20,9 +20,9 @@
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+          
         </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding AlleKFZs}"  Grid.Row="0" Grid.Column="0" Background="AliceBlue">
+        <ListView ItemsSource="{Binding AlleKFZs}"  Grid.Row="0" Grid.Column="0" Background="AliceBlue" SelectedItem="{Binding SelectedKFZ}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -34,5 +34,15 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListView>
+        <StackPanel Grid.Row="0" Grid.Column="1" Background="LightYellow" >
+            <TextBox Text="{Binding SelectedKFZ.Kennzeichen, Mode=TwoWay}"></TextBox>
+            <TextBox Text="{Binding SelectedKFZ.Typ, Mode=TwoWay}"></TextBox>
+            <TextBox Text="{Binding SelectedKFZ.FahrgestellNr, Mode=TwoWay}"></TextBox>
+            <TextBox Text="{Binding SelectedKFZ.Leistung, Mode=TwoWay}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <Button Command="{Binding SaveAllKFZCommand}">Save All KFZs</Button>
+            <Button Command="{Binding SaveKFZDetailsCommand}">Save KFZ-Details</Button>
+        </StackPanel>
     </Grid>
 </Window>

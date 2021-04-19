@@ -23,5 +23,10 @@ namespace KFZApp.Views
         {
             InitializeComponent();
         }
+
+        private void StackPanel_TargetUpdated(object sender, DataTransferEventArgs e)
+        {
+
+        }
     }
 }
