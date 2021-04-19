@@ -17,7 +17,6 @@ namespace KFZApp.ViewModels
         private ICommand _saveKFZDetailsCommand;
         public List<KFZ> AlleKFZs { get; set; }
 
-
         public ICommand SaveAllKFZCommand
         {
             get 
@@ -41,7 +40,6 @@ namespace KFZApp.ViewModels
                 return _saveKFZDetailsCommand;
             }
         }
-
 
         public KFZ SelectedKFZ 
         {

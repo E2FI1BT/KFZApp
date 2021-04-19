@@ -22,23 +22,23 @@
             <RowDefinition></RowDefinition>
           
         </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding AlleKFZs}"  Grid.Row="0" Grid.Column="0" Background="AliceBlue" SelectedItem="{Binding SelectedKFZ}">
+        <ListView ItemsSource="{Binding AlleKFZs}"  Grid.Row="0" Grid.Column="0" Background="AliceBlue" SelectedItem="{Binding SelectedKFZ}" Grid.RowSpan="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBox Text="{Binding Kennzeichen}"></TextBox>
-                        <Label Content="{Binding Typ}"></Label>
-                        <Label Content="{Binding FahrgestellNr}"></Label>
-                        <Label Content="{Binding Leistung}"></Label>
+                        <Label Content="{Binding Kennzeichen}" Width="100"></Label>
+                        <Label Content="{Binding Typ}" Width="100"></Label>
+                        <Label Content="{Binding FahrgestellNr}" Width="100"></Label>
+                        <Label Content="{Binding Leistung}" Width="100"></Label>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListView>
-        <StackPanel Grid.Row="0" Grid.Column="1" Background="LightYellow" >
+        <StackPanel Grid.Row="0" Grid.Column="1" Background="LightYellow" Margin="0,0,0,94"  >
             <TextBox Text="{Binding SelectedKFZ.Kennzeichen, Mode=TwoWay}"></TextBox>
             <TextBox Text="{Binding SelectedKFZ.Typ, Mode=TwoWay}"></TextBox>
             <TextBox Text="{Binding SelectedKFZ.FahrgestellNr, Mode=TwoWay}"></TextBox>
-            <TextBox Text="{Binding SelectedKFZ.Leistung, Mode=TwoWay}"></TextBox>
+            <TextBox Text="{Binding SelectedKFZ.Leistung, Mode=TwoWay}" ></TextBox>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1">
             <Button Command="{Binding SaveAllKFZCommand}">Save All KFZs</Button>
