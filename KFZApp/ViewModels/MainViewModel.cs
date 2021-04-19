@@ -16,11 +16,10 @@ namespace KFZApp.ViewModels
         public MainViewModel() //Standardkonstruktor
         {
             AlleKFZs = new List<KFZ>();
-            AlleKFZs.Add(new KFZ() { Kennzeichen = "S-RT 584", Typ="SUV" });
-            AlleKFZs.Add(new KFZ() { Kennzeichen = "RT-XD 5213", Typ="Cabrio" });
-            AlleKFZs.Add(new KFZ() { Kennzeichen = "B-BD 4302", Typ="Crossover" });
+            AlleKFZs.Add(new KFZ() { Kennzeichen = "S-RT 584", Typ="SUV" , FahrgestellNr="FG 4245", Leistung = 1});
+            AlleKFZs.Add(new KFZ() { Kennzeichen = "RT-XD 5213", Typ="Cabrio", FahrgestellNr="FG 4333", Leistung= 2 });
+            AlleKFZs.Add(new KFZ() { Kennzeichen = "B-BD 4302", Typ="Crossover", FahrgestellNr = "FG 4333",Leistung= 3 });
             //test
-           //test2
            
         }
 

@@ -28,6 +28,8 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBox Text="{Binding Kennzeichen}"></TextBox>
                         <Label Content="{Binding Typ}"></Label>
+                        <Label Content="{Binding FahrgestellNr}"></Label>
+                        <Label Content="{Binding Leistung}"></Label>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
