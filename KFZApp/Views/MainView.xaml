@@ -35,14 +35,14 @@
             </ListBox.ItemTemplate>
         </ListView>
         <StackPanel Grid.Row="0" Grid.Column="1" Background="LightYellow" Margin="0,0,0,94"  >
-            <TextBox Text="{Binding SelectedKFZ.Kennzeichen, Mode=TwoWay}"></TextBox>
-            <TextBox Text="{Binding SelectedKFZ.Typ, Mode=TwoWay}"></TextBox>
-            <TextBox Text="{Binding SelectedKFZ.FahrgestellNr, Mode=TwoWay}"></TextBox>
-            <TextBox Text="{Binding SelectedKFZ.Leistung, Mode=TwoWay}" ></TextBox>
+            <TextBox Text="{Binding SelectedKFZ.Kennzeichen, Mode=TwoWay}" FontSize="20"></TextBox>
+            <TextBox Text="{Binding SelectedKFZ.Typ, Mode=TwoWay}" FontSize="20"></TextBox>
+            <TextBox Text="{Binding SelectedKFZ.FahrgestellNr, Mode=TwoWay}" FontSize="20"></TextBox>
+            <TextBox Text="{Binding SelectedKFZ.Leistung, Mode=TwoWay}" FontSize="20"></TextBox>
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1">
-            <Button Command="{Binding SaveAllKFZCommand}">Save All KFZs</Button>
-            <Button Command="{Binding SaveKFZDetailsCommand}">Save KFZ-Details</Button>
+        <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Bottom" >
+            <Button Command="{Binding SaveAllKFZCommand}" FontSize="20">Save All KFZs</Button>
+            <Button Command="{Binding SaveKFZDetailsCommand}" FontSize="20">Save KFZ-Details</Button>
         </StackPanel>
     </Grid>
 </Window>

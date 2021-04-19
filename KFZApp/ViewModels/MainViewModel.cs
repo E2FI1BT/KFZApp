@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using KFZApp.Model;
 using System.Threading.Tasks;
 using System.ComponentModel; //Brauchen wir für INotifyPropertyChanged
 using System.Windows.Input;
 using CommandHelper;
+using CommonTypes;
+using DataAccess;
 
 namespace KFZApp.ViewModels
 {
@@ -67,7 +68,12 @@ namespace KFZApp.ViewModels
 
         private void SaveAllKFZ()
         {
-            System.Windows.MessageBox.Show("Jetzt werden die KFZ-Liste Abgespeichert.");
+            DataAccess.DataAccess da = new DataAccess.DataAccess();
+
+            foreach (var kfz in AlleKFZs)
+            {
+                da.SaveKFZ(kfz);
+            }
         }
        
     }
