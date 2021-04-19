@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KFZApp.Model
+namespace DataAccess
 {
-    public class KFZ
+    public class Class1
     {
-        public string Kennzeichen { get; set; }
-        public string Typ { get; set; }
     }
 }
