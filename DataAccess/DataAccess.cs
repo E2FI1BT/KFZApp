@@ -15,14 +15,14 @@ namespace DataAccess
     {
         public void SaveKFZ(KFZ kfz)
         {
-            MessageBox.Show($"Data-Access SaveKFZ {kfz.Kennzeichen}");
 
+           
             //Verbindung zur DB aufbauen.
-            MySqlConnection myConnection = new SqlConnection("SERVER=localhost;DATABASE=;UID=root;PASSWORD=;");
+            MySqlConnection myConnection = new MySqlConnection("SERVER=localhost;DATABASE=kfzapp;UID=root;PASSWORD=;");
             myConnection.Open();
 
             //Einfüge SQL-Befehl zusammenbauen.
-            string myInsertQuery = "INSERT INTO t_chatquote (alias, quote, timestamp) Values('""')";
+            string myInsertQuery = $"INSERT INTO `kfz`( `FahrgestellNr`, `Kennzeichen`, `Leistung`, `Typ`) VALUES('{kfz.FahrgestellNr}', '{kfz.Kennzeichen}', {kfz.Leistung}, '{kfz.Typ}')";
             MySqlCommand myCommand = new MySqlCommand(myInsertQuery);
 
             //Dem SQL-Befehl noch sagen, welche Verbindung zum Server verwendet werden soll.
@@ -33,6 +33,8 @@ namespace DataAccess
 
             //Verbindung zur Datenbank wieder abbauen.
             myConnection.Close();
+
+            MessageBox.Show($"Data-Access SaveKFZ {kfz.Kennzeichen}");
 
         }
     }
