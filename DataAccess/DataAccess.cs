@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -15,8 +16,6 @@ namespace DataAccess
     {
         public void SaveKFZ(KFZ kfz)
         {
-
-           
             //Verbindung zur DB aufbauen.
             MySqlConnection myConnection = new MySqlConnection("SERVER=localhost;DATABASE=kfzapp;UID=root;PASSWORD=;");
             myConnection.Open();
@@ -33,9 +32,79 @@ namespace DataAccess
 
             //Verbindung zur Datenbank wieder abbauen.
             myConnection.Close();
+        }
 
-            MessageBox.Show($"Data-Access SaveKFZ {kfz.Kennzeichen}");
+        public List<KFZ> GetALLKFZ()
+        {
+            List<KFZ> KFZListe = new List<KFZ>();
 
+            //Verbindung zur DB aufbauen.
+            MySqlConnection myConnection = new MySqlConnection("SERVER=localhost;DATABASE=kfzapp;UID=root;PASSWORD=;");
+            myConnection.Open();
+
+            //Einfüge SQL-Befehl zusammenbauen.
+            string sqlSelect = "SELECT * FROM `kfz`";
+
+            //Befehl ausführen
+            MySqlCommand myCommand = new MySqlCommand(sqlSelect);
+            
+            MySqlDataReader reader = myCommand.ExecuteReader();
+          
+            while (reader.Read())
+            {
+                KFZ newKFZ = new KFZ();
+
+                newKFZ.KFZid = Convert.ToInt32(reader["idkfz"]);
+                newKFZ.FahrgestellNr = Convert.ToString(reader["FahrgestellNr"]);
+                newKFZ.Kennzeichen = Convert.ToString(reader["Kennzeichen"]);
+                newKFZ.Leistung = Convert.ToInt32(reader["Leistung"]);
+                newKFZ.Typ = Convert.ToString(reader["Typ"]);
+            }
+
+
+            //Verbindung zur Datenbank wieder abbauen.
+            myConnection.Close();
+            return KFZListe;
+        }
+
+        public void SaveCurrenKFZ(KFZ k)
+        {
+            //Verbindung zur DB aufbauen.
+            MySqlConnection myConnection = new MySqlConnection("SERVER=localhost;DATABASE=kfzapp;UID=root;PASSWORD=;");
+            myConnection.Open();
+
+            //Befehl Setzen 
+            string sqlUpdate = $"UPDATE `kfz` SET `idkfz`='[{k.KFZid}]',`FahrgestellNr`='[{k.FahrgestellNr}]',`Kennzeichen`='[{k.Kennzeichen}]',`Leistung`='[{k.Leistung}]',`Typ`='[{k.Typ}]' WHERE idkfz = {k.KFZid}";
+            MySqlCommand myCommand = new MySqlCommand(sqlUpdate);
+
+            //Dem SQL-Befehl noch sagen, welche Verbindung zum Server verwendet werden soll.
+            myCommand.Connection = myConnection;
+
+            //Befehl ausführen.
+            myCommand.ExecuteNonQuery();
+
+            //Verbindung zur Datenbank wieder abbauen.
+            myConnection.Close();
+        }
+
+        public void DeleteKFZ(int kfzid)
+        {
+            //Verbindung zur DB aufbauen.
+            MySqlConnection myConnection = new MySqlConnection("SERVER=localhost;DATABASE=kfzapp;UID=root;PASSWORD=;");
+            myConnection.Open();
+
+            //Befehl Setzen 
+            string sqlDelete = $"DELETE FROM `kfz` WHERE idkfz = {kfzid}";
+            MySqlCommand myCommand = new MySqlCommand(sqlDelete);
+
+            //Dem SQL-Befehl noch sagen, welche Verbindung zum Server verwendet werden soll.
+            myCommand.Connection = myConnection;
+
+            //Befehl ausführen.
+            myCommand.ExecuteNonQuery();
+
+            //Verbindung zur Datenbank wieder abbauen.
+            myConnection.Close();
         }
     }
 }

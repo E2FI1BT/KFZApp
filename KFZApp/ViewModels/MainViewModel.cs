@@ -13,10 +13,13 @@ namespace KFZApp.ViewModels
 {
     class MainViewModel : INotifyPropertyChanged //vgl. abstrakten Klasse
     {
+        public List<KFZ> AlleKFZs { get; set; }
         private KFZ _selectedKFZ;
+
         private ICommand _saveAllKFZCommand;
         private ICommand _saveKFZDetailsCommand;
-        public List<KFZ> AlleKFZs { get; set; }
+        private ICommand _getAllKFZCommand;
+        private ICommand _deleteKFZCommand;
 
         public ICommand SaveAllKFZCommand
         {
@@ -29,7 +32,6 @@ namespace KFZApp.ViewModels
                 return _saveAllKFZCommand;
             }
         }
-
         public ICommand SaveKFZDetailsCommand
         {
             get
@@ -41,6 +43,30 @@ namespace KFZApp.ViewModels
                 return _saveKFZDetailsCommand;
             }
         }
+        public ICommand GetAllKFZCommand
+        {
+            get
+            {
+                if (_getAllKFZCommand == null)
+                {
+                    _getAllKFZCommand = new RelayCommand(d => GetAllKFZ());
+                }
+                return _getAllKFZCommand;
+            }
+        }
+        public ICommand DeleteKFZCommand
+        {
+            get
+            {
+                if (_deleteKFZCommand == null)
+                {
+                    _deleteKFZCommand = new RelayCommand(d => DeleteKFZ());
+                }
+                return _deleteKFZCommand;
+            }
+        }
+        
+
 
         public KFZ SelectedKFZ 
         {
@@ -53,17 +79,18 @@ namespace KFZApp.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public MainViewModel() //Standardkonstruktor
-        {
-            AlleKFZs = new List<KFZ>();
-            AlleKFZs.Add(new KFZ() { Kennzeichen = "S-RT 584", Typ="SUV" , FahrgestellNr="FG 4245", Leistung = 1});
-            AlleKFZs.Add(new KFZ() { Kennzeichen = "RT-XD 5213", Typ="Cabrio", FahrgestellNr="FG 4333", Leistung= 2 });
-            AlleKFZs.Add(new KFZ() { Kennzeichen = "B-BD 4302", Typ="Crossover", FahrgestellNr = "FG 4333",Leistung= 3 });
-        }
+        //public MainViewModel() //Standardkonstruktor
+        //{
+        //    AlleKFZs = new List<KFZ>();
+        //    AlleKFZs.Add(new KFZ() { Kennzeichen = "S-RT 584", Typ="SUV" , FahrgestellNr="FG 4245", Leistung = 1});
+        //    AlleKFZs.Add(new KFZ() { Kennzeichen = "RT-XD 5213", Typ="Cabrio", FahrgestellNr="FG 4333", Leistung= 2 });
+        //    AlleKFZs.Add(new KFZ() { Kennzeichen = "B-BD 4302", Typ="Crossover", FahrgestellNr = "FG 4333",Leistung= 3 });
+        //}
 
         private void SaveKFZDetails()
         {
-            System.Windows.MessageBox.Show("Jetzt werden die KFZ-Details Abgespeichert");
+            DataAccess.DataAccess da = new DataAccess.DataAccess();
+            da.SaveCurrenKFZ(SelectedKFZ);
         }
 
         private void SaveAllKFZ()
@@ -75,6 +102,18 @@ namespace KFZApp.ViewModels
                 da.SaveKFZ(kfz);
             }
         }
-       
+
+        private void GetAllKFZ()
+        {
+            DataAccess.DataAccess da = new DataAccess.DataAccess();
+            List<KFZ> AlleKFZs = da.GetALLKFZ();
+        }
+
+        private void DeleteKFZ()
+        {
+            DataAccess.DataAccess da = new DataAccess.DataAccess();
+            da.DeleteKFZ(SelectedKFZ.KFZid);
+        }
+
     }
 }

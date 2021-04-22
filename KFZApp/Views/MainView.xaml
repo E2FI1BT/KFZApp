@@ -43,6 +43,8 @@
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" VerticalAlignment="Bottom" >
             <Button Command="{Binding SaveAllKFZCommand}" FontSize="20">Save All KFZs</Button>
             <Button Command="{Binding SaveKFZDetailsCommand}" FontSize="20">Save KFZ-Details</Button>
+            <Button Command="{Binding GetAllKFZCommand}" FontSize="20">Get all KFZ</Button>
+            <Button Command="{Binding DeleteKFZCommand}" FontSize="20">Delete Selected KFZ</Button>
         </StackPanel>
     </Grid>
 </Window>
