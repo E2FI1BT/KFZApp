@@ -28,7 +28,7 @@
                     <StackPanel Orientation="Horizontal">
                         <Label Content="{Binding Kennzeichen}" Width="100"></Label>
                         <Label Content="{Binding Typ}" Width="100"></Label>
-                        <Label Content="{Binding FahrgestellNr}" Width="100"></Label>
+                        <Label Content="{Binding FahrgestellNr}" Width="100"></Label>   
                         <Label Content="{Binding Leistung}" Width="100"></Label>
                     </StackPanel>
                 </DataTemplate>
