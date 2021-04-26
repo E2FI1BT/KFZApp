@@ -13,13 +13,22 @@ namespace KFZApp.ViewModels
 {
     class MainViewModel : INotifyPropertyChanged //vgl. abstrakten Klasse
     {
-        public List<KFZ> AlleKFZs { get; set; }
+        public List<KFZ> AlleKFZs 
+        {
+            get { return _alleKFZs; }
+            set {
+                _alleKFZs = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("AlleKFZs"));
+            } 
+        }
         private KFZ _selectedKFZ;
+        private List<KFZ> _alleKFZs;
 
         private ICommand _saveAllKFZCommand;
         private ICommand _saveKFZDetailsCommand;
         private ICommand _getAllKFZCommand;
         private ICommand _deleteKFZCommand;
+                  
 
         public ICommand SaveAllKFZCommand
         {
@@ -65,8 +74,6 @@ namespace KFZApp.ViewModels
                 return _deleteKFZCommand;
             }
         }
-        
-
 
         public KFZ SelectedKFZ 
         {
@@ -106,13 +113,15 @@ namespace KFZApp.ViewModels
         private void GetAllKFZ()
         {
             DataAccess.DataAccess da = new DataAccess.DataAccess();
-            List<KFZ> AlleKFZs = da.GetALLKFZ();
+            AlleKFZs = da.GetALLKFZ();
+
         }
 
         private void DeleteKFZ()
         {
             DataAccess.DataAccess da = new DataAccess.DataAccess();
             da.DeleteKFZ(SelectedKFZ.KFZid);
+            this.GetAllKFZ();
         }
 
     }

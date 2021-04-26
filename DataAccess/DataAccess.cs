@@ -47,7 +47,7 @@ namespace DataAccess
 
             //Befehl ausführen
             MySqlCommand myCommand = new MySqlCommand(sqlSelect);
-            
+            myCommand.Connection = myConnection;
             MySqlDataReader reader = myCommand.ExecuteReader();
           
             while (reader.Read())
@@ -59,6 +59,7 @@ namespace DataAccess
                 newKFZ.Kennzeichen = Convert.ToString(reader["Kennzeichen"]);
                 newKFZ.Leistung = Convert.ToInt32(reader["Leistung"]);
                 newKFZ.Typ = Convert.ToString(reader["Typ"]);
+                KFZListe.Add(newKFZ);
             }
 
 
